@@ -11,13 +11,12 @@ import helmet from "helmet";
 import exampleRouter from "./routes/example.router";
 import nftRouter from "./routes/nft.router";
 import { join } from "path";
-import { allowedOrigins } from "./config";
 
 const app = express();
 
 // configure
 app.use(helmet());
-app.use(cors({ origin: allowedOrigins }));
+app.use(cors());
 app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use("/api/assets", static_(join(__dirname, "../public/uploads")));
