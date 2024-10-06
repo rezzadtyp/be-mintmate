@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { createIpfsService } from "../services/nft/create-ipfs.service";
 import { getNFTsService } from "../services/nft/get-nfts.service";
 import { getNFTService } from "../services/nft/get-nft.service";
+import { getNFTsByWalletService } from "../services/nft/get-nfts-by-wallet.service";
 
 export const createIpfs = async (
   req: Request,
@@ -49,6 +50,23 @@ export const getNFTMetadata = async (
     };
 
     const result = await getNFTService(params);
+
+    return res.status(200).send(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getNFTsByWallet = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const query = {
+      address: req.query.address as string,
+    };
+    const result = await getNFTsByWalletService(query);
 
     return res.status(200).send(result);
   } catch (error) {
