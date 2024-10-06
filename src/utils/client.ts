@@ -1,6 +1,9 @@
 import { createThirdwebClient, defineChain, getContract } from "thirdweb";
+import dotenv from 'dotenv';
 
-export const clientId = process.env.NEXT_PUBLIC_CLIENT_ID;
+dotenv.config();
+
+export const clientId = process.env.TW_CLIENT_ID!;
 
 if (!clientId) {
   throw new Error("No client ID provided");
