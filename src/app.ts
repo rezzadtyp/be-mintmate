@@ -8,7 +8,6 @@ import express, {
   static as static_,
 } from "express";
 import helmet from "helmet";
-import exampleRouter from "./routes/example.router";
 import nftRouter from "./routes/nft.router";
 import { join } from "path";
 
@@ -23,7 +22,6 @@ app.use("/api/assets", static_(join(__dirname, "../public/uploads")));
 
 // routes
 app.get("/api", (_req, res) => res.send("Welcome to My API"));
-app.use("/api/examples", exampleRouter);
 app.use("/api/nft", nftRouter);
 
 // error
